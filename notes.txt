@@ -1,0 +1,60 @@
+Youtube lecture: https://www.youtube.com/watch?v=cwqNAkwhKqw&t=58s
+
+Git repositories: https://github.com/lukef7fywmrp/netflix-redesign 
+
+Dependency Installation 
+ - Heroicons: npm install @heroicons/react@v1 
+ - React Icons: npm i react-icons
+ - Firebase: npm i firebase (sudo npm install --location=global firebase : for global installation)
+ - React Hook Form: npm install react-hook-form
+ - Recoil for state management: npm install recoil
+ - Material UI version 5: npm install @mui/material @emotion/react @emotion/styled
+ - ReactPlayer: npm i react-player
+
+Configuration for image download from external sites
+- Update next.config.js file with images-domains as below
+  module.exports = {
+	reactStrictMode: true,
+	images: {
+		domains: ['image.tmdb.org'],
+	},
+}
+
+Customizing tailwindcss example
+	write below in tailwind.config.js
+				backgroundImage: {
+					'gradient-to-b':
+						'linear-gradient(to bottom,rgba(20,20,20,0) 0,rgba(20,20,20,.15) 15%,rgba(20,20,20,.35) 29%,rgba(20,20,20,.58) 44%,#141414 68%,#141414 100%);',
+				},
+
+Remove 'Expectation Violation: Duplicate atom key "modalState"
+1. $ npm install uuid
+2. $ npm i --save-dev @types/uuid
+2. modify modalAtom.ts in atoms folder as bellow
+
+	import { v1 } from "uuid"
+
+	export const modalState = atom({
+		key: `modalState/${v1()}`,
+		default: false,
+	})
+
+	export const movieState = atom<Movie | DocumentData | null>({
+		key: `movieState/${v1()}`,
+		default: null,
+	})
+
+	[from the original]
+	export const modalState = atom({
+		key: 'modalState',
+		default: false,
+	})
+
+	export const movieState = atom<Movie | DocumentData | null>({
+		key: 'movieState',
+		default: null,
+	})
+
+When connecting the website has a problem or warning,
+	Check for a connection between firebase and stripe
+	Youtube: https://youtu.be/rhvoRP63QVI ~1:14:48
